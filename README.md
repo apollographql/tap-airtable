@@ -25,9 +25,7 @@ pip install -e .
 
 
 | Configuration Key   | Description                                                                                              |
-|---------------------|----------------------------------------------------------------------------------------------------------|
-| metadata_url        | Airtable metadata URL, at the time of the update: "https://api.airtable.com/v2/meta/"                    |
-| records_url         | Airtable content URL, at the time of the update: "https://api.airtable.com/v0/"                          |
+|---------------------|----------------------------------------------------------------------------------------------------------|"                          |
 | token               | Airtable Token                                                                                           |
 | base_id             | Airtable base ID to export                                                                               |
 | selected_by_default | Default for every table in the base. If set to true, all of the tables in the schema will be syncronized |
