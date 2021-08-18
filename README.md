@@ -48,7 +48,7 @@ The tap can be invoked in discovery mode to find the available tables and
 columns in the database:
 
 ```bash
-$ tap-airtable --config config.json --discover
+$ tap-airtable --config config.json --discover >> catalog.json
 
 ```
 
@@ -56,8 +56,7 @@ A discovered catalog is output, with a JSON-schema description of each table. A
 source table directly corresponds to a Singer stream.
 
 The `selected-by-default` fields is used to enable the sync of the tables. If set to 'true', all of the tables will be 
-selected in the `properties.json` 
-
+selected in the `catalog.json` 
 
 
 ## Target project (Example: target-postgres) 
@@ -83,8 +82,6 @@ Complete the config.json
 
 ```
 {
-    "metadata_url":"https://api.airtable.com/v2/meta/",
-    "records_url":"https://api.airtable.com/v0/",
     "token":"airtable-api-key",
     "base_id": "base-id",
     "selected_by_default": true
@@ -94,5 +91,5 @@ Complete the config.json
 From the home directory of the project 
 
 ```shell
-tap-airtable -c config.json --properties properties.json | ~/.virtualenvs/target-postgres/bin/target-postgres 
+tap-airtable -c config.json --catalog catalog.json | ~/.virtualenvs/target-postgres/bin/target-postgres 
 ```
