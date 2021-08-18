@@ -6,7 +6,7 @@ To make this Tap work with a Target, clone both projects and follow this instruc
 
 ## Usage
 
-This section dives into basic usage of `tap-mysql` by walking through extracting
+This section dives into basic usage of `tap-airtable` by walking through extracting
 data from a table. It assumes that you can connect to and read from a MySQL
 database.
 
