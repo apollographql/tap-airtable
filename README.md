@@ -2,7 +2,7 @@
 
 # Tap Airtable
 
-[Singer](https://www.singer.io/) tap that extracts data from a [MySQL](https://www.mysql.com/) database and produces JSON-formatted data following the [Singer spec](https://github.com/singer-io/getting-started/blob/master/docs/SPEC.md).
+[Singer](https://www.singer.io/) tap that extracts data from [Airtable](https://www.airtable.com/) and produces JSON-formatted data following the [Singer spec](https://github.com/singer-io/getting-started/blob/master/docs/SPEC.md).
 
 To make this Tap work with a Target, clone both projects and follow this instructions:
 
@@ -29,7 +29,7 @@ pip install -e .
 | token               | Airtable Token                                                                                           |
 | base_id             | Airtable base ID to export                                                                               |
 | selected_by_default | Default for every table in the base. If set to true, all of the tables in the schema will be syncronized |
-| remove_emojis       | Filter out emojis from the scyncronization                                                               |
+
 
 
 #### Configuration file example
@@ -37,12 +37,9 @@ pip install -e .
 
 ```json
 {
-    "metadata_url":"https://api.airtable.com/v2/meta/",
-    "records_url":"https://api.airtable.com/v0/",
     "token":"airtable_token",
     "base_id": "airtable_base_id",
     "selected_by_default": true,
-    "remove_emojis": false
 }
 ```
 
