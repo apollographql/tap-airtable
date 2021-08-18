@@ -1,5 +1,3 @@
-![AIME](https://d2ylaz7bdw65jx.cloudfront.net/assets/images/aime-logo.svg)
-
 # Tap Airtable
 
 [Singer](https://www.singer.io/) tap that extracts data from [Airtable](https://www.airtable.com/) and produces JSON-formatted data following the [Singer spec](https://github.com/singer-io/getting-started/blob/master/docs/SPEC.md).
@@ -25,7 +23,7 @@ pip install -e .
 
 
 | Configuration Key   | Description                                                                                              |
-|---------------------|----------------------------------------------------------------------------------------------------------|"                          |
+|---------------------|----------------------------------------------------------------------------------------------------------|
 | token               | Airtable Token                                                                                           |
 | base_id             | Airtable base ID to export                                                                               |
 | selected_by_default | Default for every table in the base. If set to true, all of the tables in the schema will be syncronized |
