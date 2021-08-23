@@ -28,6 +28,6 @@ setup(name='tap-airtable',
           [console_scripts]
           tap-airtable=tap_airtable:main
       ''',
-      packages=['tap_airtable', 'tap_airtable.airtable'],
+      packages=['tap_airtable'],
       include_package_data=True,
       )

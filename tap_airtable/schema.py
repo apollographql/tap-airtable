@@ -1,10 +1,7 @@
-import requests
-import re
-import os
-import json
 import singer
-from singer.catalog import Catalog, CatalogEntry
 from singer.schema import Schema
+
+from .transform import normalize_field_name
 
 LOGGER = singer.get_logger()
 
@@ -89,50 +86,3 @@ def get_stream_schema(table):
     stream_schema["key_properties"] = ["id"]
 
     return stream_schema
-
-def normalize_field_name(name):
-    
-    normalized_name = re.sub(r'[^\w\s]', '', name.replace("-", " ").replace("/", " ").lower()).replace(" ", "_")
-    return normalized_name
-
-def get_tap_data(airtable, table, offset = None):
-    
-    response = airtable.get_response(table, offset).json()
-    tap_data = response.get('records')
-    offset = response.get("offset")
-
-    normalized_rows = []
-
-    for row in tap_data:
-        normalized_row = {"id": row.get("id")}
-        
-        for k, v in row.get("fields").items():
-            normalized_row[normalize_field_name(k)] = v
-        
-        normalized_rows.append(normalized_row)
-    
-    return normalized_rows, offset
-
-class Airtable():
-    def __init__(self, base_id, token):
-        self.base_id = base_id
-        self.headers = {"Authorization": f"Bearer {token}"}
-
-    def get_response(self, table, offset=None):
-        
-        table = table.replace('/', '%2F')
-        url = f"https://api.airtable.com/v0/{self.base_id}/{table}"
-
-        if offset:
-            url = f"{url}?offset={offset}"
-        
-        response = requests.get(url, headers = self.headers)
-        
-        return response
-
-    def get_metadata(self):
-        
-        url = f"https://api.airtable.com/v2/meta/{self.base_id}"
-        response = requests.get(url, headers = self.headers)
-        
-        return response
