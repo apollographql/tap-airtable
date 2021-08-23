@@ -88,8 +88,7 @@ Complete the config.json
 
 ```
 {
-    "metadata_url":"https://api.airtable.com/v2/meta/",
-    "records_url":"https://api.airtable.com/v0/",
+
     "token":"airtable-api-key",
     "base_id": "base-id",
     "selected_by_default": true
