@@ -26,11 +26,12 @@ NUMBER_TYPES = set([
     'legacyPercentTimes100'
 ])
 
-DATE_TYPES = set([
+DATETIME_TYPES = set([
     'dateTime',
-    'date',
     'createdTime'
 ])
+
+
 
 ARRAY_TYPES = set([
     'multipleRecordLinks',
@@ -55,6 +56,10 @@ def get_property_schema(field):
         property_schema['type'] = ["null", "number"]
     elif airtable_type == "checkbox":
         property_schema['type'] = ["null", "boolean"]
+    elif airtable_type == "date":
+        date_type = {"type": "string", "format": "date"}
+        string_type = {"type": ["null", "string"]}
+        property_schema["anyOf"] = [date_type, string_type]
     elif airtable_type in ARRAY_TYPES:
         property_schema['items'] = {"type": "string"}
         property_schema['type'] = ["null", "array"]
