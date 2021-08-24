@@ -70,8 +70,7 @@ def sync_table(client, config, state, stream):
 
 def sync(client, config, state, catalog):
     LOGGER.info(f"Starting sync...")
-
-    for stream in catalog.streams:
-        if stream.metadata.get("selected"):
-            LOGGER.info(f"Syncing stream: {stream.tap_stream_id}")
-            sync_table(client, config, state, stream)
+    selected_streams = catalog.get_selected_streams(state)
+    for stream in selected_streams:
+        LOGGER.info(f"Syncing stream: {stream.tap_stream_id}")
+        sync_table(client, config, state, stream)

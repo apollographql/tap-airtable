@@ -16,7 +16,7 @@ def discover(client, config):
 
     for table in metadata["tables"]:
         schema = get_stream_schema(table)
-        streams.append(CatalogEntry(metadata = {"selected": config.get("selected_by_default")}, **schema))
+        streams.append(CatalogEntry(metadata = [{"metadata":{"selected": config.get("selected_by_default")}, "breadcrumb": []}], **schema))
 
     LOGGER.info("Finished discovery.")
 
