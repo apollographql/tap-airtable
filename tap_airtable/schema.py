@@ -48,7 +48,7 @@ def get_property_schema(field):
 
     if airtable_type in STRING_TYPES:
         property_schema["type"] = ["null", "string"]
-    elif airtable_type in DATE_TYPES:
+    elif airtable_type in DATETIME_TYPES:
         date_type = {"type": "string", "format": "date-time"}
         string_type = {"type": ["null", "string"]}
         property_schema["anyOf"] = [date_type, string_type]
