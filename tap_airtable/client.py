@@ -59,7 +59,7 @@ ERROR_CODE_EXCEPTION_MAPPING = {
 }
 
 def get_exception_for_error_code(error_code):
-    return ERROR_CODE_EXCEPTION_MAPPING.get(error_code, MixpanelError)
+    return ERROR_CODE_EXCEPTION_MAPPING.get(error_code, AirtableError)
 
 def raise_for_error(response):
     LOGGER.error(f'ERROR {response.status_code}: {response.text}, REASON: {response.reason}')
@@ -80,9 +80,9 @@ def raise_for_error(response):
                 ex = get_exception_for_error_code(error_code)
                 raise ex(message)
             else:
-                raise MixpanelError(error)
+                raise AirtableError(error)
         except (ValueError, TypeError):
-            raise MixpanelError(error)
+            raise AirtableError(error)
 
 class AirtableClient():
     BASE_URL = "https://api.airtable.com"

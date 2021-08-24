@@ -69,7 +69,8 @@ def sync_table(client, config, state, stream):
         offset = sync_records(client, url, stream, time_extracted, offset)
 
 def sync(client, config, state, catalog):
-    
+    LOGGER.info(f"Starting sync...")
+
     for stream in catalog.streams:
         if stream.metadata.get("selected"):
             LOGGER.info(f"Syncing stream: {stream.tap_stream_id}")
