@@ -16,7 +16,9 @@ STRING_TYPES = set([
     'rollup',
     'rating',
     'duration',
-    'richText'
+    'richText',
+    'currency',
+    'link'
 ])
 
 NUMBER_TYPES = set([
@@ -31,15 +33,12 @@ DATETIME_TYPES = set([
     'createdTime'
 ])
 
-
-
 ARRAY_TYPES = set([
     'multipleRecordLinks',
     'multipleSelects',
     'multipleAttachments',
     'multipleCollaborators'
 ])
-
 
 def get_property_schema(field):
     
@@ -66,10 +65,11 @@ def get_property_schema(field):
     elif airtable_type == "formula":
         property_schema = get_property_schema(field.get("options").get("result"))
     else:
+        # property_schema["type"] = ["null", "string"]
         raise Exception(f"Found unsupported type: {airtable_type}.")
 
     return property_schema
-
+g
 def get_stream_schema(table):
 
     stream_schema = {}
