@@ -69,7 +69,7 @@ def get_property_schema(field):
         raise Exception(f"Found unsupported type: {airtable_type}.")
 
     return property_schema
-g
+
 def get_stream_schema(table):
 
     stream_schema = {}
