@@ -18,8 +18,7 @@ STRING_TYPES = set([
     'duration',
     'richText',
     'currency',
-    'link',
-    'createdBy'
+    'link'
 ])
 
 NUMBER_TYPES = set([
@@ -38,7 +37,8 @@ ARRAY_TYPES = set([
     'multipleRecordLinks',
     'multipleSelects',
     'multipleAttachments',
-    'multipleCollaborators'
+    'multipleCollaborators',
+    'createdBy'
 ])
 
 def get_property_schema(field):
