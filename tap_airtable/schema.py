@@ -18,7 +18,8 @@ STRING_TYPES = set([
     'duration',
     'richText',
     'currency',
-    'link'
+    'link',
+    'createdBy'
 ])
 
 NUMBER_TYPES = set([
