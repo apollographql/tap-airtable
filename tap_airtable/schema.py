@@ -19,7 +19,8 @@ STRING_TYPES = set([
     'richText',
     'currency',
     'link',
-    'createdBy'
+    'createdBy',
+    'singleCollaborator'
 ])
 
 NUMBER_TYPES = set([
