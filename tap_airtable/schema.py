@@ -79,7 +79,7 @@ def get_stream_schema(table):
     properties = {"id": {"type": "string"}}
 
     table_name = table.get("name")
-    stream_name = table_name.lower().replace(" ", "_")
+    stream_name = normalize_field_name(table_name.lower())
     id_field = table.get("primaryFieldId")
 
     for field in table.get("fields"):
