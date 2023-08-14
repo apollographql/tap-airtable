@@ -20,7 +20,10 @@ STRING_TYPES = set([
     'currency',
     'link',
     'createdBy',
-    'singleCollaborator'
+    'singleCollaborator',
+    'lastModifiedBy',
+    'button',
+    'externalSyncSource'
 ])
 
 NUMBER_TYPES = set([
@@ -32,15 +35,16 @@ NUMBER_TYPES = set([
 
 DATETIME_TYPES = set([
     'dateTime',
-    'createdTime'
+    'createdTime',
+    'lastModifiedTime'
 ])
 
 ARRAY_TYPES = set([
     'multipleRecordLinks',
     'multipleSelects',
     'multipleAttachments',
-    'multipleCollaborators'
-    
+    'multipleCollaborators',
+    'multipleLookupValues'
 ])
 
 def get_property_schema(field):
@@ -66,10 +70,11 @@ def get_property_schema(field):
         property_schema['items'] = {"type": "string"}
         property_schema['type'] = ["null", "array"]
     elif airtable_type == "formula":
-        property_schema = get_property_schema(field.get("options").get("result"))
+        if field.get("options").get("isValid") is True:
+            property_schema = get_property_schema(field.get("options").get("result"))
     else:
         property_schema["type"] = ["null", "string"]
-#         raise Exception(f"Found unsupported type: {airtable_type}.")
+        raise Exception(f"Found unsupported type: {airtable_type}.")
 
     return property_schema
 
@@ -84,7 +89,7 @@ def get_stream_schema(table):
 
     for field in table.get("fields"):
         property_name = normalize_field_name(field.get("name"))
-        property_schema = get_property_schema(field.get("config"))
+        property_schema = get_property_schema(field)
         properties[property_name] = property_schema
     
     stream_schema["table"] = table_name

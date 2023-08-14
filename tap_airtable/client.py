@@ -113,7 +113,7 @@ class AirtableClient():
         return url
     
     def get_metadata_url(self):
-        url = f"{self.BASE_URL}/v2/meta/{self.__base_id}"
+        url = f"{self.BASE_URL}/v0/meta/bases/{self.__base_id}/tables"
         return url
     
     @backoff.on_exception(
