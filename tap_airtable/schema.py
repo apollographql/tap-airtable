@@ -74,7 +74,7 @@ def get_property_schema(field):
             property_schema = get_property_schema(field.get("options").get("result"))
     else:
         property_schema["type"] = ["null", "string"]
-        raise Exception(f"Found unsupported type: {airtable_type}.")
+        LOGGER.warning(f"Found unsupported type: {airtable_type}.")
 
     return property_schema
 
