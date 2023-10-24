@@ -86,8 +86,6 @@ def raise_for_error(response):
 
 class AirtableClient():
     BASE_URL = "https://api.airtable.com"
-    TABLE_PATH = "v0/"
-    METADATA_PATH = "v2/meta"
 
     def __init__(self, config):
         self.__base_id = config.get("base_id")
